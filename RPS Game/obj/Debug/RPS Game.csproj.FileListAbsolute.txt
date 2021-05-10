@@ -1,0 +1,10 @@
+C:\Users\User\Documents\GitHub\BNU-CO453-APP06-HAROON\RPS Game\bin\Debug\RPS Game.exe.config
+C:\Users\User\Documents\GitHub\BNU-CO453-APP06-HAROON\RPS Game\bin\Debug\RPS Game.exe
+C:\Users\User\Documents\GitHub\BNU-CO453-APP06-HAROON\RPS Game\bin\Debug\RPS Game.pdb
+C:\Users\User\Documents\GitHub\BNU-CO453-APP06-HAROON\RPS Game\obj\Debug\RPS Game.csprojAssemblyReference.cache
+C:\Users\User\Documents\GitHub\BNU-CO453-APP06-HAROON\RPS Game\obj\Debug\RPS_Game.Properties.Resources.resources
+C:\Users\User\Documents\GitHub\BNU-CO453-APP06-HAROON\RPS Game\obj\Debug\RPS Game.csproj.GenerateResource.cache
+C:\Users\User\Documents\GitHub\BNU-CO453-APP06-HAROON\RPS Game\obj\Debug\RPS Game.csproj.CoreCompileInputs.cache
+C:\Users\User\Documents\GitHub\BNU-CO453-APP06-HAROON\RPS Game\obj\Debug\RPS Game.exe
+C:\Users\User\Documents\GitHub\BNU-CO453-APP06-HAROON\RPS Game\obj\Debug\RPS Game.pdb
+C:\Users\User\Documents\GitHub\BNU-CO453-APP06-HAROON\RPS Game\obj\Debug\RPS_Game.GameWindow.resources
