@@ -49,11 +49,16 @@ namespace RPS_Game
             this.BotLabel = new System.Windows.Forms.Label();
             this.StatsLabel = new System.Windows.Forms.Label();
             this.ChoicesLabel = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.RematchBox = new System.Windows.Forms.PictureBox();
+            this.RematchBox_VerdictText = new System.Windows.Forms.Label();
+            this.RematchBox_RematchButton = new System.Windows.Forms.Button();
+            this.RematchBox_MenuButton = new System.Windows.Forms.Button();
+            this.RematchBox_SaveScoreButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.PlayerPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BotPictureBox)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RematchBox)).BeginInit();
             this.SuspendLayout();
             // 
             // ExitButton
@@ -313,29 +318,103 @@ namespace RPS_Game
             this.ChoicesLabel.Text = "CHOICES";
             this.ChoicesLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // pictureBox1
+            // RematchBox
             // 
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.pictureBox1.ErrorImage = null;
-            this.pictureBox1.Image = global::RPS_Game.Properties.Resources.qq;
-            this.pictureBox1.InitialImage = null;
-            this.pictureBox1.Location = new System.Drawing.Point(0, 1);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(672, 510);
-            this.pictureBox1.TabIndex = 23;
-            this.pictureBox1.TabStop = false;
+            this.RematchBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.RematchBox.ErrorImage = null;
+            this.RematchBox.Image = ((System.Drawing.Image)(resources.GetObject("RematchBox.Image")));
+            this.RematchBox.InitialImage = null;
+            this.RematchBox.Location = new System.Drawing.Point(0, 1);
+            this.RematchBox.Name = "RematchBox";
+            this.RematchBox.Size = new System.Drawing.Size(720, 568);
+            this.RematchBox.TabIndex = 23;
+            this.RematchBox.TabStop = false;
+            this.RematchBox.Visible = false;
+            // 
+            // RematchBox_VerdictText
+            // 
+            this.RematchBox_VerdictText.AutoSize = true;
+            this.RematchBox_VerdictText.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(29)))), ((int)(((byte)(29)))));
+            this.RematchBox_VerdictText.Font = new System.Drawing.Font("Segoe UI", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RematchBox_VerdictText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(185)))), ((int)(((byte)(141)))), ((int)(((byte)(6)))));
+            this.RematchBox_VerdictText.Location = new System.Drawing.Point(23, 138);
+            this.RematchBox_VerdictText.MinimumSize = new System.Drawing.Size(365, 100);
+            this.RematchBox_VerdictText.Name = "RematchBox_VerdictText";
+            this.RematchBox_VerdictText.Size = new System.Drawing.Size(365, 100);
+            this.RematchBox_VerdictText.TabIndex = 24;
+            this.RematchBox_VerdictText.Text = "You Lost!";
+            this.RematchBox_VerdictText.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.RematchBox_VerdictText.Visible = false;
+            this.RematchBox_VerdictText.Click += new System.EventHandler(this.RematchBox_VerdictText_Click);
+            // 
+            // RematchBox_RematchButton
+            // 
+            this.RematchBox_RematchButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("RematchBox_RematchButton.BackgroundImage")));
+            this.RematchBox_RematchButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.RematchBox_RematchButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.RematchBox_RematchButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(185)))), ((int)(((byte)(141)))), ((int)(((byte)(6)))));
+            this.RematchBox_RematchButton.Location = new System.Drawing.Point(130, 327);
+            this.RematchBox_RematchButton.Name = "RematchBox_RematchButton";
+            this.RematchBox_RematchButton.Size = new System.Drawing.Size(144, 46);
+            this.RematchBox_RematchButton.TabIndex = 25;
+            this.RematchBox_RematchButton.UseVisualStyleBackColor = true;
+            this.RematchBox_RematchButton.Visible = false;
+            // 
+            // RematchBox_MenuButton
+            // 
+            this.RematchBox_MenuButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("RematchBox_MenuButton.BackgroundImage")));
+            this.RematchBox_MenuButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.RematchBox_MenuButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.RematchBox_MenuButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(185)))), ((int)(((byte)(141)))), ((int)(((byte)(6)))));
+            this.RematchBox_MenuButton.Location = new System.Drawing.Point(130, 385);
+            this.RematchBox_MenuButton.Name = "RematchBox_MenuButton";
+            this.RematchBox_MenuButton.Size = new System.Drawing.Size(144, 46);
+            this.RematchBox_MenuButton.TabIndex = 26;
+            this.RematchBox_MenuButton.UseVisualStyleBackColor = true;
+            this.RematchBox_MenuButton.Visible = false;
+            // 
+            // RematchBox_SaveScoreButton
+            // 
+            this.RematchBox_SaveScoreButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("RematchBox_SaveScoreButton.BackgroundImage")));
+            this.RematchBox_SaveScoreButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.RematchBox_SaveScoreButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.RematchBox_SaveScoreButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(82)))), ((int)(((byte)(64)))), ((int)(((byte)(8)))));
+            this.RematchBox_SaveScoreButton.Location = new System.Drawing.Point(130, 443);
+            this.RematchBox_SaveScoreButton.Name = "RematchBox_SaveScoreButton";
+            this.RematchBox_SaveScoreButton.Size = new System.Drawing.Size(144, 46);
+            this.RematchBox_SaveScoreButton.TabIndex = 27;
+            this.RematchBox_SaveScoreButton.UseVisualStyleBackColor = true;
+            this.RematchBox_SaveScoreButton.Visible = false;
             // 
             // label1
             // 
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(185)))), ((int)(((byte)(141)))), ((int)(((byte)(6)))));
-            this.label1.Location = new System.Drawing.Point(444, 338);
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(29)))), ((int)(((byte)(29)))));
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.Gray;
+            this.label1.Location = new System.Drawing.Point(23, 252);
+            this.label1.MinimumSize = new System.Drawing.Size(365, 25);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(100, 21);
-            this.label1.TabIndex = 24;
-            this.label1.Text = "CPU";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label1.Size = new System.Drawing.Size(365, 25);
+            this.label1.TabIndex = 28;
+            this.label1.Text = "YOU VS BOT";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label1.Visible = false;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(29)))), ((int)(((byte)(29)))));
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(23, 209);
+            this.label2.MinimumSize = new System.Drawing.Size(365, 25);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(365, 40);
+            this.label2.TabIndex = 29;
+            this.label2.Text = "0-1";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label2.Visible = false;
             // 
             // GameWindow
             // 
@@ -344,11 +423,16 @@ namespace RPS_Game
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(720, 570);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.Controls.Add(this.RematchBox_SaveScoreButton);
+            this.Controls.Add(this.RematchBox_MenuButton);
+            this.Controls.Add(this.RematchBox_RematchButton);
+            this.Controls.Add(this.RematchBox_VerdictText);
+            this.Controls.Add(this.ExitButton);
+            this.Controls.Add(this.RematchBox);
             this.Controls.Add(this.MenuButton);
             this.Controls.Add(this.ResetButton);
-            this.Controls.Add(this.ExitButton);
-            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.StatsLabel);
             this.Controls.Add(this.ChoicesLabel);
             this.Controls.Add(this.BotLabel);
@@ -374,7 +458,7 @@ namespace RPS_Game
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.PlayerPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.BotPictureBox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RematchBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -401,8 +485,13 @@ namespace RPS_Game
         private System.Windows.Forms.Label BotLabel;
         private System.Windows.Forms.Label StatsLabel;
         private System.Windows.Forms.Label ChoicesLabel;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox RematchBox;
+        private System.Windows.Forms.Label RematchBox_VerdictText;
+        private System.Windows.Forms.Button RematchBox_RematchButton;
+        private System.Windows.Forms.Button RematchBox_MenuButton;
+        private System.Windows.Forms.Button RematchBox_SaveScoreButton;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
     }
 }
 

@@ -284,6 +284,11 @@ namespace RPS_Game
         {
 
         }
+
+        private void RematchBox_VerdictText_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 
 }
