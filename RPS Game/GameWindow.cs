@@ -45,6 +45,11 @@ namespace RPS_Game
             draws = 0;
             currentRound = 1;
             VerdictText.Text = "";
+            DrawsNumber.Text = Convert.ToString(draws);
+            WinsNumber.Text = Convert.ToString(playerWins);
+            LossesNumber.Text = Convert.ToString(AIwins);
+            WinRateNumber.Text = "0";
+            RoundText.Text = "ROUND 1";
         }
         private void RefreshGameWindow()
         {
@@ -55,6 +60,7 @@ namespace RPS_Game
             WinsNumber.Update();
             LossesNumber.Update();
             WinRateNumber.Update();
+            RoundText.Update();
         }
 
         public void AddDictionary()
@@ -173,7 +179,7 @@ namespace RPS_Game
 
                 CheckGame();
                 VerdictText.Update();
-                Thread.Sleep(2000);
+                Thread.Sleep(1500);
                 VerdictText.Text = "";
                 VerdictText.Update();
                 if (MaxRound < currentRound)
@@ -267,13 +273,6 @@ namespace RPS_Game
         {
             DefaultValues();
             RefreshGameWindow();
-            PlayerPictureBox.Image = Properties.Resources.qq;
-            BotPictureBox.Image = Properties.Resources.qq;
-            VerdictText.Update();
-            DrawsNumber.Update();
-            WinsNumber.Update();
-            LossesNumber.Update();
-            WinRateNumber.Update();
         }
 
         private void label1_Click_7(object sender, EventArgs e)

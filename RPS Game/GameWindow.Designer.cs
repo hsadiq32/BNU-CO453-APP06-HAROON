@@ -49,8 +49,11 @@ namespace RPS_Game
             this.BotLabel = new System.Windows.Forms.Label();
             this.StatsLabel = new System.Windows.Forms.Label();
             this.ChoicesLabel = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.PlayerPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BotPictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // ExitButton
@@ -310,6 +313,30 @@ namespace RPS_Game
             this.ChoicesLabel.Text = "CHOICES";
             this.ChoicesLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.pictureBox1.ErrorImage = null;
+            this.pictureBox1.Image = global::RPS_Game.Properties.Resources.qq;
+            this.pictureBox1.InitialImage = null;
+            this.pictureBox1.Location = new System.Drawing.Point(0, 1);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(672, 510);
+            this.pictureBox1.TabIndex = 23;
+            this.pictureBox1.TabStop = false;
+            // 
+            // label1
+            // 
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(185)))), ((int)(((byte)(141)))), ((int)(((byte)(6)))));
+            this.label1.Location = new System.Drawing.Point(444, 338);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(100, 21);
+            this.label1.TabIndex = 24;
+            this.label1.Text = "CPU";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // GameWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -317,11 +344,15 @@ namespace RPS_Game
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(720, 570);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.MenuButton);
+            this.Controls.Add(this.ResetButton);
+            this.Controls.Add(this.ExitButton);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.StatsLabel);
             this.Controls.Add(this.ChoicesLabel);
             this.Controls.Add(this.BotLabel);
             this.Controls.Add(this.PlayerLabel);
-            this.Controls.Add(this.MenuButton);
             this.Controls.Add(this.GoButton);
             this.Controls.Add(this.VerdictText);
             this.Controls.Add(this.RoundText);
@@ -334,8 +365,6 @@ namespace RPS_Game
             this.Controls.Add(this.RockButton);
             this.Controls.Add(this.BotPictureBox);
             this.Controls.Add(this.PlayerPictureBox);
-            this.Controls.Add(this.ResetButton);
-            this.Controls.Add(this.ExitButton);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(720, 570);
@@ -345,6 +374,7 @@ namespace RPS_Game
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.PlayerPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.BotPictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -371,6 +401,8 @@ namespace RPS_Game
         private System.Windows.Forms.Label BotLabel;
         private System.Windows.Forms.Label StatsLabel;
         private System.Windows.Forms.Label ChoicesLabel;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label label1;
     }
 }
 
