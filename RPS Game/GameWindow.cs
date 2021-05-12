@@ -32,6 +32,7 @@ namespace RPS_Game
             InitializeComponent();
             DefaultValues();
             AddDictionary();
+            PlayerLabel.Text = playerName.ToUpper();
             // set this.FormBorderStyle to None here if needed
             // if set to none, make sure you have a way to close the form!
         }
@@ -273,6 +274,16 @@ namespace RPS_Game
             WinsNumber.Update();
             LossesNumber.Update();
             WinRateNumber.Update();
+        }
+
+        private void label1_Click_7(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click_8(object sender, EventArgs e)
+        {
+
         }
     }
 
