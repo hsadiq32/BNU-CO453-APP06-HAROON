@@ -15,8 +15,8 @@ namespace RPS_Game
         static void Main()
         {
             Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new GameWindow());
+            Application.SetCompatibleTextRenderingDefault(true);
+            Application.Run(new GameWindow("John", 0));
         }
     }
 }

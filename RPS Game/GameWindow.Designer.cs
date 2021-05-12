@@ -29,7 +29,6 @@ namespace RPS_Game
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GameWindow));
             this.ExitButton = new System.Windows.Forms.Button();
             this.ResetButton = new System.Windows.Forms.Button();
@@ -43,10 +42,8 @@ namespace RPS_Game
             this.DrawsNumber = new System.Windows.Forms.Label();
             this.WinRateNumber = new System.Windows.Forms.Label();
             this.RoundText = new System.Windows.Forms.Label();
-            this.CountdownText = new System.Windows.Forms.Label();
             this.VerdictText = new System.Windows.Forms.Label();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.HelpLabel = new System.Windows.Forms.Label();
+            this.GoButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.PlayerPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BotPictureBox)).BeginInit();
             this.SuspendLayout();
@@ -79,6 +76,7 @@ namespace RPS_Game
             this.ResetButton.Size = new System.Drawing.Size(54, 17);
             this.ResetButton.TabIndex = 1;
             this.ResetButton.UseVisualStyleBackColor = true;
+            this.ResetButton.Click += new System.EventHandler(this.ResetButton_Click);
             // 
             // PlayerPictureBox
             // 
@@ -216,28 +214,13 @@ namespace RPS_Game
             this.RoundText.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.RoundText.Click += new System.EventHandler(this.label1_Click_3);
             // 
-            // CountdownText
-            // 
-            this.CountdownText.AutoSize = true;
-            this.CountdownText.BackColor = System.Drawing.Color.Transparent;
-            this.CountdownText.Font = new System.Drawing.Font("Segoe UI", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CountdownText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(185)))), ((int)(((byte)(141)))), ((int)(((byte)(6)))));
-            this.CountdownText.Location = new System.Drawing.Point(244, 185);
-            this.CountdownText.MinimumSize = new System.Drawing.Size(231, 40);
-            this.CountdownText.Name = "CountdownText";
-            this.CountdownText.Size = new System.Drawing.Size(231, 40);
-            this.CountdownText.TabIndex = 12;
-            this.CountdownText.Text = "5";
-            this.CountdownText.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.CountdownText.Click += new System.EventHandler(this.label1_Click_4);
-            // 
             // VerdictText
             // 
             this.VerdictText.AutoSize = true;
             this.VerdictText.BackColor = System.Drawing.Color.Transparent;
             this.VerdictText.Font = new System.Drawing.Font("Segoe UI", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.VerdictText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(185)))), ((int)(((byte)(141)))), ((int)(((byte)(6)))));
-            this.VerdictText.Location = new System.Drawing.Point(244, 145);
+            this.VerdictText.Location = new System.Drawing.Point(244, 171);
             this.VerdictText.MinimumSize = new System.Drawing.Size(231, 40);
             this.VerdictText.Name = "VerdictText";
             this.VerdictText.Size = new System.Drawing.Size(231, 40);
@@ -246,24 +229,15 @@ namespace RPS_Game
             this.VerdictText.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.VerdictText.Click += new System.EventHandler(this.label1_Click_5);
             // 
-            // timer1
+            // GoButton
             // 
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // HelpLabel
-            // 
-            this.HelpLabel.AutoSize = true;
-            this.HelpLabel.BackColor = System.Drawing.Color.Transparent;
-            this.HelpLabel.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.HelpLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(29)))), ((int)(((byte)(29)))));
-            this.HelpLabel.Location = new System.Drawing.Point(245, 141);
-            this.HelpLabel.MinimumSize = new System.Drawing.Size(231, 40);
-            this.HelpLabel.Name = "HelpLabel";
-            this.HelpLabel.Size = new System.Drawing.Size(231, 42);
-            this.HelpLabel.TabIndex = 14;
-            this.HelpLabel.Text = "Press a choice to \r\nstart the round";
-            this.HelpLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.HelpLabel.Click += new System.EventHandler(this.label1_Click_6);
+            this.GoButton.Location = new System.Drawing.Point(319, 516);
+            this.GoButton.Name = "GoButton";
+            this.GoButton.Size = new System.Drawing.Size(75, 23);
+            this.GoButton.TabIndex = 15;
+            this.GoButton.Text = "GoButton";
+            this.GoButton.UseVisualStyleBackColor = true;
+            this.GoButton.Click += new System.EventHandler(this.GoButton_Click);
             // 
             // GameWindow
             // 
@@ -272,9 +246,8 @@ namespace RPS_Game
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(720, 570);
-            this.Controls.Add(this.HelpLabel);
+            this.Controls.Add(this.GoButton);
             this.Controls.Add(this.VerdictText);
-            this.Controls.Add(this.CountdownText);
             this.Controls.Add(this.RoundText);
             this.Controls.Add(this.WinRateNumber);
             this.Controls.Add(this.DrawsNumber);
@@ -315,10 +288,8 @@ namespace RPS_Game
         private System.Windows.Forms.Label DrawsNumber;
         private System.Windows.Forms.Label WinRateNumber;
         private System.Windows.Forms.Label RoundText;
-        private System.Windows.Forms.Label CountdownText;
         private System.Windows.Forms.Label VerdictText;
-        private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.Label HelpLabel;
+        private System.Windows.Forms.Button GoButton;
     }
 }
 
