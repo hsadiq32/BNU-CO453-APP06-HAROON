@@ -106,7 +106,7 @@ namespace RPS_Game
             WinsNumber.Text = Convert.ToString(playerWins);
             LossesNumber.Text = Convert.ToString(AIwins);
             WinRateNumber.Text = "0";
-            RoundText.Text = "ROUND 1";
+            RoundText.Text = "ROUND 1" + "/" + MaxRound;
         }
         private void RefreshGameWindow()
         {
@@ -252,7 +252,7 @@ namespace RPS_Game
                 }
                 else
                 {
-                    RoundText.Text = "ROUND " + currentRound;
+                    RoundText.Text = "ROUND " + currentRound + "/" + MaxRound;
                     RoundText.Update();
                 }
                 playerChoice = "none";
