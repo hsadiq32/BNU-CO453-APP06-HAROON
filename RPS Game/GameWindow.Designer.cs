@@ -31,7 +31,8 @@ namespace RPS_Game
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GameWindow));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.ExitButton = new System.Windows.Forms.Button();
             this.ResetButton = new System.Windows.Forms.Button();
             this.PlayerPictureBox = new System.Windows.Forms.PictureBox();
@@ -63,12 +64,14 @@ namespace RPS_Game
             this.winRateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.scoreBoardBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.rPS_DatabaseDataSet = new RPS_Game.RPS_DatabaseDataSet();
-            this.scoreBoardTableAdapter = new RPS_Game.RPS_DatabaseDataSetTableAdapters.ScoreBoardTableAdapter();
             this.MenuBox = new System.Windows.Forms.PictureBox();
             this.MenuBox_NameTextBox = new System.Windows.Forms.TextBox();
             this.MenuBox_RoundsTextBox = new System.Windows.Forms.TextBox();
             this.MenuBox_NewGameButton = new System.Windows.Forms.Button();
             this.MenuBox_GoBackButton = new System.Windows.Forms.Button();
+            this.scoreBoardTableAdapter = new RPS_Game.RPS_DatabaseDataSetTableAdapters.ScoreBoardTableAdapter();
+            this.highToLowToolStrip = new System.Windows.Forms.ToolStrip();
+            this.highToLowToolStripButton = new System.Windows.Forms.ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)(this.PlayerPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BotPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.RematchBox)).BeginInit();
@@ -76,6 +79,7 @@ namespace RPS_Game
             ((System.ComponentModel.ISupportInitialize)(this.scoreBoardBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rPS_DatabaseDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.MenuBox)).BeginInit();
+            this.highToLowToolStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // ExitButton
@@ -444,28 +448,39 @@ namespace RPS_Game
             // 
             // ScoreBoardBox
             // 
+            this.ScoreBoardBox.AllowUserToOrderColumns = true;
             this.ScoreBoardBox.AutoGenerateColumns = false;
-            this.ScoreBoardBox.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.ScoreBoardBox.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(56)))), ((int)(((byte)(56)))));
             this.ScoreBoardBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.ScoreBoardBox.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.ScoreBoardBox.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(185)))), ((int)(((byte)(151)))), ((int)(((byte)(6)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.ScoreBoardBox.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.ScoreBoardBox.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.ScoreBoardBox.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.nameDataGridViewTextBoxColumn,
             this.winRateDataGridViewTextBoxColumn});
             this.ScoreBoardBox.DataSource = this.scoreBoardBindingSource;
-            this.ScoreBoardBox.GridColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(185)))), ((int)(((byte)(151)))), ((int)(((byte)(6)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(58)))), ((int)(((byte)(58)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.ScoreBoardBox.DefaultCellStyle = dataGridViewCellStyle2;
+            this.ScoreBoardBox.EnableHeadersVisualStyles = false;
+            this.ScoreBoardBox.GridColor = System.Drawing.Color.White;
             this.ScoreBoardBox.Location = new System.Drawing.Point(402, 127);
             this.ScoreBoardBox.Name = "ScoreBoardBox";
             this.ScoreBoardBox.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.ScoreBoardBox.RowHeadersVisible = false;
+            this.ScoreBoardBox.RowTemplate.DefaultCellStyle.BackColor = System.Drawing.Color.DimGray;
             this.ScoreBoardBox.Size = new System.Drawing.Size(275, 397);
             this.ScoreBoardBox.TabIndex = 30;
             this.ScoreBoardBox.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
@@ -498,10 +513,6 @@ namespace RPS_Game
             // 
             this.rPS_DatabaseDataSet.DataSetName = "RPS_DatabaseDataSet";
             this.rPS_DatabaseDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // scoreBoardTableAdapter
-            // 
-            this.scoreBoardTableAdapter.ClearBeforeFill = true;
             // 
             // MenuBox
             // 
@@ -563,13 +574,39 @@ namespace RPS_Game
             this.MenuBox_GoBackButton.Visible = false;
             this.MenuBox_GoBackButton.Click += new System.EventHandler(this.MenuBox_GoBackButton_Click);
             // 
+            // scoreBoardTableAdapter
+            // 
+            this.scoreBoardTableAdapter.ClearBeforeFill = true;
+            // 
+            // highToLowToolStrip
+            // 
+            this.highToLowToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.highToLowToolStripButton});
+            this.highToLowToolStrip.Location = new System.Drawing.Point(0, 0);
+            this.highToLowToolStrip.Name = "highToLowToolStrip";
+            this.highToLowToolStrip.Size = new System.Drawing.Size(720, 25);
+            this.highToLowToolStrip.TabIndex = 36;
+            this.highToLowToolStrip.Text = "highToLowToolStrip";
+            this.highToLowToolStrip.Visible = false;
+            this.highToLowToolStrip.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.highToLowToolStrip_ItemClicked);
+            // 
+            // highToLowToolStripButton
+            // 
+            this.highToLowToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.highToLowToolStripButton.Name = "highToLowToolStripButton";
+            this.highToLowToolStripButton.Size = new System.Drawing.Size(71, 22);
+            this.highToLowToolStripButton.Text = "HighToLow";
+            this.highToLowToolStripButton.Click += new System.EventHandler(this.highToLowToolStripButton_Click_1);
+            // 
             // GameWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(720, 570);
+            this.Controls.Add(this.highToLowToolStrip);
             this.Controls.Add(this.MenuBox_GoBackButton);
             this.Controls.Add(this.MenuBox_NewGameButton);
             this.Controls.Add(this.MenuBox_RoundsTextBox);
@@ -616,6 +653,8 @@ namespace RPS_Game
             ((System.ComponentModel.ISupportInitialize)(this.scoreBoardBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rPS_DatabaseDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.MenuBox)).EndInit();
+            this.highToLowToolStrip.ResumeLayout(false);
+            this.highToLowToolStrip.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -660,6 +699,8 @@ namespace RPS_Game
         private System.Windows.Forms.TextBox MenuBox_RoundsTextBox;
         private System.Windows.Forms.Button MenuBox_NewGameButton;
         private System.Windows.Forms.Button MenuBox_GoBackButton;
+        private System.Windows.Forms.ToolStrip highToLowToolStrip;
+        private System.Windows.Forms.ToolStripButton highToLowToolStripButton;
     }
 }
 

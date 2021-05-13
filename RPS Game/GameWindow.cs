@@ -31,20 +31,77 @@ namespace RPS_Game
         int AIwinsOverall = 0;
         int draws;
         public string playerUserName;
+        public double winRate;
 
-
+        SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\User\Documents\GitHub\BNU-CO453-APP06-HAROON\RPS Game\RPS_Database.mdf;Integrated Security=True");
+        SqlCommand cmd;
+        SqlDataAdapter adapt;
         public GameWindow()
         {
-
             InitializeComponent();
+            //ScoreBoardBox.Sort(ScoreBoardBox["Win Rate"], ListSortDirection.Ascending);
             this.Shown += new EventHandler(Form1_Shown);
             this.Resize += new EventHandler(Form1_Resize);
             this.LocationChanged += new EventHandler(Form1_Resize);
             DefaultValues();
             AddDictionary();
-            // set view and add new columns
-            // set this.FormBorderStyle to None here if needed
-            // if set to none, make sure you have a way to close the form!
+        }
+        private void E(string name, double winrate)
+        {
+            bool nameConflict = conflictChecker(name, "Name", false);
+            bool winRateConflict = conflictChecker(winrate.ToString(), "WinRate", true);
+            if (nameConflict && winRateConflict)
+            {
+                MessageBox.Show("Data Already Saved");
+            }
+            else
+            {
+                cmd = new SqlCommand("INSERT INTO dbo.ScoreBoard (Name,WinRate) VALUES (@name,@winrate)", con);
+                con.Open();
+                cmd.Parameters.AddWithValue("@name", name);
+                cmd.Parameters.AddWithValue("@winrate", winrate);
+                cmd.ExecuteNonQuery();
+                con.Close();
+            }
+
+            DisplayData();
+        }
+        private bool conflictChecker(string name, string column, bool integer)
+        {
+            DataTable dt = new DataTable();
+            string sql;
+            if (integer)
+            {
+                sql = "SELECT * FROM dbo.ScoreBoard WHERE " + column + " = " + name + "; ";
+            }
+            else
+            {
+                sql = "SELECT * FROM dbo.ScoreBoard WHERE " + column + " = '" + name + "'; ";
+            }
+            cmd = new SqlCommand(sql, con);
+            SqlDataAdapter ad = new SqlDataAdapter(cmd);
+            ad.Fill(dt);
+            con.Close();
+
+            if (dt.Rows.Count > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        //Display Data in DataGridView  
+        private void DisplayData()
+        {
+            con.Open();
+            DataTable dt = new DataTable();
+            adapt = new SqlDataAdapter("SELECT * FROM dbo.ScoreBoard ORDER BY WinRate DESC;", con);
+            adapt.Fill(dt);
+            ScoreBoardBox.DataSource = dt;
+            con.Close();
         }
 
         void Form1_Shown(object sender, EventArgs e)
@@ -67,6 +124,18 @@ namespace RPS_Game
             }
             this.BringToFront();
         }
+
+        public void UpdateTable()
+        {
+        }
+
+        public void AddToScoreboard(string name, double winrate)
+        {
+            E(name, winrate);
+
+        }
+
+
 
         public void ShowMenuBox()
         {
@@ -181,7 +250,7 @@ namespace RPS_Game
             {
                 MessageBox.Show("Make a choice");
             }
-            double winRate = (Convert.ToDouble(playerWins) / (Convert.ToDouble(AIwins) + Convert.ToDouble(playerWins) + Convert.ToDouble(draws))) * 100;
+            winRate = (Convert.ToDouble(playerWins) / (Convert.ToDouble(AIwins) + Convert.ToDouble(playerWins) + Convert.ToDouble(draws))) * 100;
             WinsNumber.Text = Convert.ToString(playerWins);
             LossesNumber.Text = Convert.ToString(AIwins);
             DrawsNumber.Text = Convert.ToString(draws);
@@ -292,41 +361,7 @@ namespace RPS_Game
         private void Form1_Load(object sender, EventArgs e)
         {
             // TODO: This line of code loads data into the 'rPS_DatabaseDataSet.ScoreBoard' table. You can move, or remove it, as needed.
-            this.scoreBoardTableAdapter.Fill(this.rPS_DatabaseDataSet.ScoreBoard);
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
+            this.scoreBoardTableAdapter.HighToLow(this.rPS_DatabaseDataSet.ScoreBoard);
         }
 
         private void PlayerPictureBox_Click(object sender, EventArgs e)
@@ -349,11 +384,6 @@ namespace RPS_Game
 
         }
 
-        private void label1_Click_4(object sender, EventArgs e)
-        {
-
-        }
-
         private void label1_Click_5(object sender, EventArgs e)
         {
 
@@ -363,16 +393,6 @@ namespace RPS_Game
         {
             DefaultValues();
             RefreshGameWindow();
-        }
-
-        private void label1_Click_7(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click_8(object sender, EventArgs e)
-        {
-
         }
 
         private void RematchBox_VerdictText_Click(object sender, EventArgs e)
@@ -393,11 +413,6 @@ namespace RPS_Game
 
         }
 
-        private void RematchBox_Table_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void RematchBox_VersusText_Click(object sender, EventArgs e)
         {
 
@@ -408,14 +423,11 @@ namespace RPS_Game
 
         }
 
-        private void bindingSource1_CurrentChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void RematchBox_SaveScoreButton_Click(object sender, EventArgs e)
         {
+            AddToScoreboard(playerUserName, winRate);
             ScoreBoardBox.Update();
+            UpdateTable();
         }
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
@@ -425,7 +437,7 @@ namespace RPS_Game
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
+            
         }
 
         private void scoreBoardBindingSource_CurrentChanged(object sender, EventArgs e)
@@ -493,6 +505,37 @@ namespace RPS_Game
         private void MenuBox_GoBackButton_Click(object sender, EventArgs e)
         {
             HideMenuBox();
+        }
+
+        private void sort_High_to_LowToolStripButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.scoreBoardTableAdapter.Sort_High_to_Low(this.rPS_DatabaseDataSet.ScoreBoard);
+            }
+            catch (System.Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.Message);
+            }
+
+        }
+
+        private void highToLowToolStripButton_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                this.scoreBoardTableAdapter.HighToLow(this.rPS_DatabaseDataSet.ScoreBoard);
+            }
+            catch (System.Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.Message);
+            }
+
+        }
+
+        private void highToLowToolStrip_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
         }
     }
     public class DropShadow : Form
