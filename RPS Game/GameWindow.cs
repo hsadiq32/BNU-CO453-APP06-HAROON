@@ -16,6 +16,7 @@ namespace RPS_Game
     public partial class GameWindow : Form
     {
         Random rnd = new Random();
+        DropShadow ds = new DropShadow();
         IDictionary<string, string> choiceParser = new Dictionary<string, string>();
         public int currentRound;
         public int MaxRound = 5;
@@ -34,12 +35,37 @@ namespace RPS_Game
 
         public GameWindow()
         {
+
             InitializeComponent();
+            this.Shown += new EventHandler(Form1_Shown);
+            this.Resize += new EventHandler(Form1_Resize);
+            this.LocationChanged += new EventHandler(Form1_Resize);
             DefaultValues();
             AddDictionary();
             // set view and add new columns
             // set this.FormBorderStyle to None here if needed
             // if set to none, make sure you have a way to close the form!
+        }
+
+        void Form1_Shown(object sender, EventArgs e)
+        {
+            Rectangle rc = this.Bounds;
+            rc.Inflate(10, 10);
+            ds.Bounds = rc;
+            ds.Show();
+            this.BringToFront();
+        }
+
+        void Form1_Resize(object sender, EventArgs e)
+        {
+            ds.Visible = (this.WindowState == FormWindowState.Normal);
+            if (ds.Visible)
+            {
+                Rectangle rc = this.Bounds;
+                rc.Inflate(10, 10);
+                ds.Bounds = rc;
+            }
+            this.BringToFront();
         }
 
         public void ShowMenuBox()
@@ -467,6 +493,31 @@ namespace RPS_Game
         private void MenuBox_GoBackButton_Click(object sender, EventArgs e)
         {
             HideMenuBox();
+        }
+    }
+    public class DropShadow : Form
+    {
+
+        public DropShadow()
+        {
+            this.Opacity = 0.5;
+            this.BackColor = Color.Gray;
+            this.ShowInTaskbar = false;
+            this.FormBorderStyle = FormBorderStyle.None;
+            this.StartPosition = FormStartPosition.Manual;
+        }
+
+        private const int WS_EX_TRANSPARENT = 0x20;
+        private const int WS_EX_NOACTIVATE = 0x8000000;
+
+        protected override System.Windows.Forms.CreateParams CreateParams
+        {
+            get
+            {
+                CreateParams cp = base.CreateParams;
+                cp.ExStyle = cp.ExStyle | WS_EX_TRANSPARENT | WS_EX_NOACTIVATE;
+                return cp;
+            }
         }
     }
 
