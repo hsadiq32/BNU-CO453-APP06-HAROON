@@ -48,6 +48,7 @@ namespace RPS_Game
         }
         private void E(string name, double winrate)
         {
+            winrate = Convert.ToDouble(winrate.ToString("0.0"));
             bool nameConflict = conflictChecker(name, "Name", false);
             bool winRateConflict = conflictChecker(winrate.ToString(), "WinRate", true);
             if (nameConflict && winRateConflict)
