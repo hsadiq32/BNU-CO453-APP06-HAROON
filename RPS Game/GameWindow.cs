@@ -23,7 +23,6 @@ namespace RPS_Game
         string[] AIchoice = { "rock", "paper", "scissors", "rock", "scissors", "paper" };
         public int randomNumber;
         public string command;
-        public string playerName;
         string playerChoice;
         int playerWins;
         int AIwins;
@@ -341,7 +340,7 @@ namespace RPS_Game
                 if (MaxRound < currentRound)
                 {
                     // INITAILISE RESTART
-                    RematchBox_VersusText.Text = playerName + " vs CPU";
+                    RematchBox_VersusText.Text = playerUserName + " vs CPU";
                     RematchBox_VerdictText.Text = decisionEngine();
                     RematchBox_OverallScoreText.Text = playerWinsOverall + " - " + AIwinsOverall;
                     ShowRematchBox();
@@ -362,7 +361,7 @@ namespace RPS_Game
         private void Form1_Load(object sender, EventArgs e)
         {
             // TODO: This line of code loads data into the 'rPS_DatabaseDataSet.ScoreBoard' table. You can move, or remove it, as needed.
-            this.scoreBoardTableAdapter.HighToLow(this.rPS_DatabaseDataSet.ScoreBoard);
+            this.scoreBoardTableAdapter.HighToLow(this.RPS_DatabaseDataSet.ScoreBoard);
         }
 
         private void PlayerPictureBox_Click(object sender, EventArgs e)
@@ -512,7 +511,7 @@ namespace RPS_Game
         {
             try
             {
-                this.scoreBoardTableAdapter.Sort_High_to_Low(this.rPS_DatabaseDataSet.ScoreBoard);
+                this.scoreBoardTableAdapter.Sort_High_to_Low(this.RPS_DatabaseDataSet.ScoreBoard);
             }
             catch (System.Exception ex)
             {
@@ -525,7 +524,7 @@ namespace RPS_Game
         {
             try
             {
-                this.scoreBoardTableAdapter.HighToLow(this.rPS_DatabaseDataSet.ScoreBoard);
+                this.scoreBoardTableAdapter.HighToLow(this.RPS_DatabaseDataSet.ScoreBoard);
             }
             catch (System.Exception ex)
             {

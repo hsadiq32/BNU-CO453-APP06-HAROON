@@ -64,7 +64,7 @@ namespace RPS_Game
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.winRateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.scoreBoardBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.rPS_DatabaseDataSet = new RPS_Game.RPS_DatabaseDataSet();
+            this.RPS_DatabaseDataSet = new RPS_Game.RPS_DatabaseDataSet();
             this.MenuBox = new System.Windows.Forms.PictureBox();
             this.MenuBox_NameTextBox = new System.Windows.Forms.TextBox();
             this.MenuBox_RoundsTextBox = new System.Windows.Forms.TextBox();
@@ -78,7 +78,7 @@ namespace RPS_Game
             ((System.ComponentModel.ISupportInitialize)(this.RematchBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ScoreBoardBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.scoreBoardBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rPS_DatabaseDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RPS_DatabaseDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.MenuBox)).BeginInit();
             this.highToLowToolStrip.SuspendLayout();
             this.SuspendLayout();
@@ -517,13 +517,13 @@ namespace RPS_Game
             // scoreBoardBindingSource
             // 
             this.scoreBoardBindingSource.DataMember = "ScoreBoard";
-            this.scoreBoardBindingSource.DataSource = this.rPS_DatabaseDataSet;
+            this.scoreBoardBindingSource.DataSource = this.RPS_DatabaseDataSet;
             this.scoreBoardBindingSource.CurrentChanged += new System.EventHandler(this.scoreBoardBindingSource_CurrentChanged);
             // 
-            // rPS_DatabaseDataSet
+            // RPS_DatabaseDataSet
             // 
-            this.rPS_DatabaseDataSet.DataSetName = "RPS_DatabaseDataSet";
-            this.rPS_DatabaseDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            this.RPS_DatabaseDataSet.DataSetName = "RPS_DatabaseDataSet";
+            this.RPS_DatabaseDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // MenuBox
             // 
@@ -662,7 +662,7 @@ namespace RPS_Game
             ((System.ComponentModel.ISupportInitialize)(this.RematchBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ScoreBoardBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.scoreBoardBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rPS_DatabaseDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RPS_DatabaseDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.MenuBox)).EndInit();
             this.highToLowToolStrip.ResumeLayout(false);
             this.highToLowToolStrip.PerformLayout();
@@ -700,7 +700,7 @@ namespace RPS_Game
         private System.Windows.Forms.Label RematchBox_VersusText;
         private System.Windows.Forms.Label RematchBox_OverallScoreText;
         private System.Windows.Forms.DataGridView ScoreBoardBox;
-        private RPS_DatabaseDataSet rPS_DatabaseDataSet;
+        private RPS_DatabaseDataSet RPS_DatabaseDataSet;
         private System.Windows.Forms.BindingSource scoreBoardBindingSource;
         private RPS_DatabaseDataSetTableAdapters.ScoreBoardTableAdapter scoreBoardTableAdapter;
         private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;

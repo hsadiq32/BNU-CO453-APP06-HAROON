@@ -84,9 +84,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ContentController.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="GameWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -100,7 +97,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>RPS_DatabaseDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="ScoreBoard.cs" />
     <EmbeddedResource Include="GameWindow.resx">
       <DependentUpon>GameWindow.cs</DependentUpon>
     </EmbeddedResource>
