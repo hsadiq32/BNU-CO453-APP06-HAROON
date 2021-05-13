@@ -29,7 +29,9 @@ namespace RPS_Game
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GameWindow));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.ExitButton = new System.Windows.Forms.Button();
             this.ResetButton = new System.Windows.Forms.Button();
             this.PlayerPictureBox = new System.Windows.Forms.PictureBox();
@@ -54,11 +56,26 @@ namespace RPS_Game
             this.RematchBox_RematchButton = new System.Windows.Forms.Button();
             this.RematchBox_MenuButton = new System.Windows.Forms.Button();
             this.RematchBox_SaveScoreButton = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.RematchBox_VersusText = new System.Windows.Forms.Label();
+            this.RematchBox_OverallScoreText = new System.Windows.Forms.Label();
+            this.ScoreBoardBox = new System.Windows.Forms.DataGridView();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.winRateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.scoreBoardBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.rPS_DatabaseDataSet = new RPS_Game.RPS_DatabaseDataSet();
+            this.scoreBoardTableAdapter = new RPS_Game.RPS_DatabaseDataSetTableAdapters.ScoreBoardTableAdapter();
+            this.MenuBox = new System.Windows.Forms.PictureBox();
+            this.MenuBox_NameTextBox = new System.Windows.Forms.TextBox();
+            this.MenuBox_RoundsTextBox = new System.Windows.Forms.TextBox();
+            this.MenuBox_NewGameButton = new System.Windows.Forms.Button();
+            this.MenuBox_GoBackButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.PlayerPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BotPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.RematchBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ScoreBoardBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.scoreBoardBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rPS_DatabaseDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MenuBox)).BeginInit();
             this.SuspendLayout();
             // 
             // ExitButton
@@ -269,6 +286,7 @@ namespace RPS_Game
             this.MenuButton.Size = new System.Drawing.Size(54, 17);
             this.MenuButton.TabIndex = 16;
             this.MenuButton.UseVisualStyleBackColor = true;
+            this.MenuButton.Click += new System.EventHandler(this.MenuButton_Click);
             // 
             // PlayerLabel
             // 
@@ -324,12 +342,13 @@ namespace RPS_Game
             this.RematchBox.ErrorImage = null;
             this.RematchBox.Image = ((System.Drawing.Image)(resources.GetObject("RematchBox.Image")));
             this.RematchBox.InitialImage = null;
-            this.RematchBox.Location = new System.Drawing.Point(0, 1);
+            this.RematchBox.Location = new System.Drawing.Point(0, 57);
             this.RematchBox.Name = "RematchBox";
-            this.RematchBox.Size = new System.Drawing.Size(720, 568);
+            this.RematchBox.Size = new System.Drawing.Size(720, 511);
             this.RematchBox.TabIndex = 23;
             this.RematchBox.TabStop = false;
             this.RematchBox.Visible = false;
+            this.RematchBox.Click += new System.EventHandler(this.RematchBox_Click);
             // 
             // RematchBox_VerdictText
             // 
@@ -337,10 +356,10 @@ namespace RPS_Game
             this.RematchBox_VerdictText.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(29)))), ((int)(((byte)(29)))));
             this.RematchBox_VerdictText.Font = new System.Drawing.Font("Segoe UI", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.RematchBox_VerdictText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(185)))), ((int)(((byte)(141)))), ((int)(((byte)(6)))));
-            this.RematchBox_VerdictText.Location = new System.Drawing.Point(23, 138);
-            this.RematchBox_VerdictText.MinimumSize = new System.Drawing.Size(365, 100);
+            this.RematchBox_VerdictText.Location = new System.Drawing.Point(23, 168);
+            this.RematchBox_VerdictText.MinimumSize = new System.Drawing.Size(365, 0);
             this.RematchBox_VerdictText.Name = "RematchBox_VerdictText";
-            this.RematchBox_VerdictText.Size = new System.Drawing.Size(365, 100);
+            this.RematchBox_VerdictText.Size = new System.Drawing.Size(365, 40);
             this.RematchBox_VerdictText.TabIndex = 24;
             this.RematchBox_VerdictText.Text = "You Lost!";
             this.RematchBox_VerdictText.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -359,6 +378,7 @@ namespace RPS_Game
             this.RematchBox_RematchButton.TabIndex = 25;
             this.RematchBox_RematchButton.UseVisualStyleBackColor = true;
             this.RematchBox_RematchButton.Visible = false;
+            this.RematchBox_RematchButton.Click += new System.EventHandler(this.RematchBox_RematchButton_Click);
             // 
             // RematchBox_MenuButton
             // 
@@ -372,6 +392,7 @@ namespace RPS_Game
             this.RematchBox_MenuButton.TabIndex = 26;
             this.RematchBox_MenuButton.UseVisualStyleBackColor = true;
             this.RematchBox_MenuButton.Visible = false;
+            this.RematchBox_MenuButton.Click += new System.EventHandler(this.RematchBox_MenuButton_Click);
             // 
             // RematchBox_SaveScoreButton
             // 
@@ -385,36 +406,160 @@ namespace RPS_Game
             this.RematchBox_SaveScoreButton.TabIndex = 27;
             this.RematchBox_SaveScoreButton.UseVisualStyleBackColor = true;
             this.RematchBox_SaveScoreButton.Visible = false;
+            this.RematchBox_SaveScoreButton.Click += new System.EventHandler(this.RematchBox_SaveScoreButton_Click);
             // 
-            // label1
+            // RematchBox_VersusText
             // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(29)))), ((int)(((byte)(29)))));
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.Gray;
-            this.label1.Location = new System.Drawing.Point(23, 252);
-            this.label1.MinimumSize = new System.Drawing.Size(365, 25);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(365, 25);
-            this.label1.TabIndex = 28;
-            this.label1.Text = "YOU VS BOT";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.label1.Visible = false;
+            this.RematchBox_VersusText.AutoSize = true;
+            this.RematchBox_VersusText.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(29)))), ((int)(((byte)(29)))));
+            this.RematchBox_VersusText.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RematchBox_VersusText.ForeColor = System.Drawing.Color.DimGray;
+            this.RematchBox_VersusText.Location = new System.Drawing.Point(23, 252);
+            this.RematchBox_VersusText.MinimumSize = new System.Drawing.Size(365, 25);
+            this.RematchBox_VersusText.Name = "RematchBox_VersusText";
+            this.RematchBox_VersusText.Size = new System.Drawing.Size(365, 25);
+            this.RematchBox_VersusText.TabIndex = 28;
+            this.RematchBox_VersusText.Text = "YOU VS BOT";
+            this.RematchBox_VersusText.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.RematchBox_VersusText.Visible = false;
+            this.RematchBox_VersusText.Click += new System.EventHandler(this.RematchBox_VersusText_Click);
             // 
-            // label2
+            // RematchBox_OverallScoreText
             // 
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(29)))), ((int)(((byte)(29)))));
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(23, 209);
-            this.label2.MinimumSize = new System.Drawing.Size(365, 25);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(365, 40);
-            this.label2.TabIndex = 29;
-            this.label2.Text = "0-1";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.label2.Visible = false;
+            this.RematchBox_OverallScoreText.AutoSize = true;
+            this.RematchBox_OverallScoreText.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(29)))), ((int)(((byte)(29)))));
+            this.RematchBox_OverallScoreText.Font = new System.Drawing.Font("Segoe UI", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RematchBox_OverallScoreText.ForeColor = System.Drawing.Color.White;
+            this.RematchBox_OverallScoreText.Location = new System.Drawing.Point(23, 209);
+            this.RematchBox_OverallScoreText.MinimumSize = new System.Drawing.Size(365, 0);
+            this.RematchBox_OverallScoreText.Name = "RematchBox_OverallScoreText";
+            this.RematchBox_OverallScoreText.Size = new System.Drawing.Size(365, 40);
+            this.RematchBox_OverallScoreText.TabIndex = 29;
+            this.RematchBox_OverallScoreText.Text = "0-1";
+            this.RematchBox_OverallScoreText.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.RematchBox_OverallScoreText.Visible = false;
+            this.RematchBox_OverallScoreText.Click += new System.EventHandler(this.RematchBox_OverallScoreText_Click);
+            // 
+            // ScoreBoardBox
+            // 
+            this.ScoreBoardBox.AutoGenerateColumns = false;
+            this.ScoreBoardBox.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.ScoreBoardBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.ScoreBoardBox.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.ScoreBoardBox.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.ScoreBoardBox.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.ScoreBoardBox.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.nameDataGridViewTextBoxColumn,
+            this.winRateDataGridViewTextBoxColumn});
+            this.ScoreBoardBox.DataSource = this.scoreBoardBindingSource;
+            this.ScoreBoardBox.GridColor = System.Drawing.Color.DimGray;
+            this.ScoreBoardBox.Location = new System.Drawing.Point(402, 127);
+            this.ScoreBoardBox.Name = "ScoreBoardBox";
+            this.ScoreBoardBox.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.ScoreBoardBox.RowHeadersVisible = false;
+            this.ScoreBoardBox.Size = new System.Drawing.Size(275, 397);
+            this.ScoreBoardBox.TabIndex = 30;
+            this.ScoreBoardBox.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
+            this.nameDataGridViewTextBoxColumn.MinimumWidth = 201;
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.nameDataGridViewTextBoxColumn.Width = 201;
+            // 
+            // winRateDataGridViewTextBoxColumn
+            // 
+            this.winRateDataGridViewTextBoxColumn.DataPropertyName = "WinRate";
+            this.winRateDataGridViewTextBoxColumn.HeaderText = "WinRate";
+            this.winRateDataGridViewTextBoxColumn.MinimumWidth = 73;
+            this.winRateDataGridViewTextBoxColumn.Name = "winRateDataGridViewTextBoxColumn";
+            this.winRateDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.winRateDataGridViewTextBoxColumn.Width = 73;
+            // 
+            // scoreBoardBindingSource
+            // 
+            this.scoreBoardBindingSource.DataMember = "ScoreBoard";
+            this.scoreBoardBindingSource.DataSource = this.rPS_DatabaseDataSet;
+            this.scoreBoardBindingSource.CurrentChanged += new System.EventHandler(this.scoreBoardBindingSource_CurrentChanged);
+            // 
+            // rPS_DatabaseDataSet
+            // 
+            this.rPS_DatabaseDataSet.DataSetName = "RPS_DatabaseDataSet";
+            this.rPS_DatabaseDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // scoreBoardTableAdapter
+            // 
+            this.scoreBoardTableAdapter.ClearBeforeFill = true;
+            // 
+            // MenuBox
+            // 
+            this.MenuBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.MenuBox.ErrorImage = null;
+            this.MenuBox.Image = ((System.Drawing.Image)(resources.GetObject("MenuBox.Image")));
+            this.MenuBox.InitialImage = null;
+            this.MenuBox.Location = new System.Drawing.Point(0, 57);
+            this.MenuBox.Name = "MenuBox";
+            this.MenuBox.Size = new System.Drawing.Size(720, 511);
+            this.MenuBox.TabIndex = 31;
+            this.MenuBox.TabStop = false;
+            this.MenuBox.Click += new System.EventHandler(this.MenuBox_Click);
+            // 
+            // MenuBox_NameTextBox
+            // 
+            this.MenuBox_NameTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.MenuBox_NameTextBox.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MenuBox_NameTextBox.Location = new System.Drawing.Point(167, 326);
+            this.MenuBox_NameTextBox.MaxLength = 20;
+            this.MenuBox_NameTextBox.Name = "MenuBox_NameTextBox";
+            this.MenuBox_NameTextBox.Size = new System.Drawing.Size(166, 22);
+            this.MenuBox_NameTextBox.TabIndex = 32;
+            // 
+            // MenuBox_RoundsTextBox
+            // 
+            this.MenuBox_RoundsTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.MenuBox_RoundsTextBox.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MenuBox_RoundsTextBox.Location = new System.Drawing.Point(167, 385);
+            this.MenuBox_RoundsTextBox.MaxLength = 3;
+            this.MenuBox_RoundsTextBox.Name = "MenuBox_RoundsTextBox";
+            this.MenuBox_RoundsTextBox.Size = new System.Drawing.Size(166, 22);
+            this.MenuBox_RoundsTextBox.TabIndex = 33;
+            // 
+            // MenuBox_NewGameButton
+            // 
+            this.MenuBox_NewGameButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("MenuBox_NewGameButton.BackgroundImage")));
+            this.MenuBox_NewGameButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.MenuBox_NewGameButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.MenuBox_NewGameButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(82)))), ((int)(((byte)(64)))), ((int)(((byte)(8)))));
+            this.MenuBox_NewGameButton.Location = new System.Drawing.Point(130, 431);
+            this.MenuBox_NewGameButton.Name = "MenuBox_NewGameButton";
+            this.MenuBox_NewGameButton.Size = new System.Drawing.Size(144, 46);
+            this.MenuBox_NewGameButton.TabIndex = 34;
+            this.MenuBox_NewGameButton.UseVisualStyleBackColor = true;
+            this.MenuBox_NewGameButton.Click += new System.EventHandler(this.MenuBox_NewGameButton_Click);
+            // 
+            // MenuBox_GoBackButton
+            // 
+            this.MenuBox_GoBackButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("MenuBox_GoBackButton.BackgroundImage")));
+            this.MenuBox_GoBackButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.MenuBox_GoBackButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.MenuBox_GoBackButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(82)))), ((int)(((byte)(64)))), ((int)(((byte)(8)))));
+            this.MenuBox_GoBackButton.Location = new System.Drawing.Point(130, 127);
+            this.MenuBox_GoBackButton.Name = "MenuBox_GoBackButton";
+            this.MenuBox_GoBackButton.Size = new System.Drawing.Size(144, 46);
+            this.MenuBox_GoBackButton.TabIndex = 35;
+            this.MenuBox_GoBackButton.UseVisualStyleBackColor = true;
+            this.MenuBox_GoBackButton.Visible = false;
+            this.MenuBox_GoBackButton.Click += new System.EventHandler(this.MenuBox_GoBackButton_Click);
             // 
             // GameWindow
             // 
@@ -423,8 +568,14 @@ namespace RPS_Game
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(720, 570);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.MenuBox_GoBackButton);
+            this.Controls.Add(this.MenuBox_NewGameButton);
+            this.Controls.Add(this.MenuBox_RoundsTextBox);
+            this.Controls.Add(this.MenuBox_NameTextBox);
+            this.Controls.Add(this.ScoreBoardBox);
+            this.Controls.Add(this.MenuBox);
+            this.Controls.Add(this.RematchBox_OverallScoreText);
+            this.Controls.Add(this.RematchBox_VersusText);
             this.Controls.Add(this.RematchBox_SaveScoreButton);
             this.Controls.Add(this.RematchBox_MenuButton);
             this.Controls.Add(this.RematchBox_RematchButton);
@@ -459,6 +610,10 @@ namespace RPS_Game
             ((System.ComponentModel.ISupportInitialize)(this.PlayerPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.BotPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.RematchBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ScoreBoardBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.scoreBoardBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rPS_DatabaseDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MenuBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -490,8 +645,19 @@ namespace RPS_Game
         private System.Windows.Forms.Button RematchBox_RematchButton;
         private System.Windows.Forms.Button RematchBox_MenuButton;
         private System.Windows.Forms.Button RematchBox_SaveScoreButton;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label RematchBox_VersusText;
+        private System.Windows.Forms.Label RematchBox_OverallScoreText;
+        private System.Windows.Forms.DataGridView ScoreBoardBox;
+        private RPS_DatabaseDataSet rPS_DatabaseDataSet;
+        private System.Windows.Forms.BindingSource scoreBoardBindingSource;
+        private RPS_DatabaseDataSetTableAdapters.ScoreBoardTableAdapter scoreBoardTableAdapter;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn winRateDataGridViewTextBoxColumn;
+        private System.Windows.Forms.PictureBox MenuBox;
+        private System.Windows.Forms.TextBox MenuBox_NameTextBox;
+        private System.Windows.Forms.TextBox MenuBox_RoundsTextBox;
+        private System.Windows.Forms.Button MenuBox_NewGameButton;
+        private System.Windows.Forms.Button MenuBox_GoBackButton;
     }
 }
 

@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -24,17 +26,72 @@ namespace RPS_Game
         string playerChoice;
         int playerWins;
         int AIwins;
+        int playerWinsOverall = 0;
+        int AIwinsOverall = 0;
         int draws;
+        public string playerUserName;
 
-        public GameWindow(string playerName, int botMode)
+
+        public GameWindow()
         {
-
             InitializeComponent();
             DefaultValues();
             AddDictionary();
-            PlayerLabel.Text = playerName.ToUpper();
+            // set view and add new columns
             // set this.FormBorderStyle to None here if needed
             // if set to none, make sure you have a way to close the form!
+        }
+
+        public void ShowMenuBox()
+        {
+            MenuBox.Show();
+            MenuBox_NewGameButton.Show();
+            MenuBox_RoundsTextBox.Show();
+            MenuBox_NameTextBox.Show();
+            MenuBox_GoBackButton.Show();
+            ScoreBoardBox.Show();
+            ScoreBoardBox.Update();
+            ResetButton.Hide();
+            MenuButton.Hide();
+        }
+        public void HideMenuBox()
+        {
+            MenuBox.Hide();
+            MenuBox_NewGameButton.Hide();
+            MenuBox_RoundsTextBox.Hide();
+            MenuBox_NameTextBox.Hide();
+            MenuBox_GoBackButton.Hide();
+            ScoreBoardBox.Hide();
+            ResetButton.Show();
+            MenuButton.Show();
+        }
+
+        public void ShowRematchBox()
+        {
+            RematchBox.Show();
+            RematchBox_RematchButton.Show();
+            RematchBox_MenuButton.Show();
+            RematchBox_SaveScoreButton.Show();
+            RematchBox_VerdictText.Show();
+            RematchBox_VersusText.Show();
+            RematchBox_OverallScoreText.Show();
+            ScoreBoardBox.Show();
+            ScoreBoardBox.Update();
+            ResetButton.Hide();
+            MenuButton.Hide();
+        }
+        public void HideRematchBox()
+        {
+            RematchBox.Hide();
+            RematchBox_RematchButton.Hide();
+            RematchBox_MenuButton.Hide();
+            RematchBox_SaveScoreButton.Hide();
+            RematchBox_VerdictText.Hide();
+            RematchBox_VersusText.Hide();
+            RematchBox_OverallScoreText.Hide();
+            ScoreBoardBox.Hide();
+            ResetButton.Show();
+            MenuButton.Show();
         }
 
         public void DefaultValues()
@@ -105,22 +162,25 @@ namespace RPS_Game
             WinRateNumber.Text = winRate.ToString("0.0") +"%";
             nextRound();
         }
-        private void decisionEngine()
+        private string decisionEngine()
         {
+            string verdict;
             if (playerWins > AIwins)
             {
-               
-                VerdictText.Text = "You Win!";
+                verdict = "You Win!";
+                playerWinsOverall++;
             }
             else if (playerWins == AIwins)
             {
 
-                VerdictText.Text = "You Draw!";
+                verdict = "You Draw!";
             }
             else
             {
-                VerdictText.Text = "Bot Wins!";
+                verdict = "You Loose!";
+                AIwinsOverall++;
             }
+            return verdict;
         }
 
         private void nextRound()
@@ -185,7 +245,10 @@ namespace RPS_Game
                 if (MaxRound < currentRound)
                 {
                     // INITAILISE RESTART
-                    MessageBox.Show("Make a choice");
+                    RematchBox_VersusText.Text = playerName + " vs CPU";
+                    RematchBox_VerdictText.Text = decisionEngine();
+                    RematchBox_OverallScoreText.Text = playerWinsOverall + " - " + AIwinsOverall;
+                    ShowRematchBox();
                 }
                 else
                 {
@@ -202,7 +265,8 @@ namespace RPS_Game
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            // TODO: This line of code loads data into the 'rPS_DatabaseDataSet.ScoreBoard' table. You can move, or remove it, as needed.
+            this.scoreBoardTableAdapter.Fill(this.rPS_DatabaseDataSet.ScoreBoard);
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -288,6 +352,121 @@ namespace RPS_Game
         private void RematchBox_VerdictText_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void RematchBox_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void RematchBox_RematchButton_Click(object sender, EventArgs e)
+        {
+            HideRematchBox();
+            DefaultValues();
+            RefreshGameWindow();
+
+        }
+
+        private void RematchBox_Table_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void RematchBox_VersusText_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void RematchBox_OverallScoreText_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void bindingSource1_CurrentChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void RematchBox_SaveScoreButton_Click(object sender, EventArgs e)
+        {
+            ScoreBoardBox.Update();
+        }
+
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void scoreBoardBindingSource_CurrentChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void MenuBox_NewGameButton_Click(object sender, EventArgs e)
+        {
+            string errorMessage = null;
+            playerUserName = null;
+            playerUserName = MenuBox_NameTextBox.Text;
+            if (String.IsNullOrEmpty(playerUserName))
+            {
+                errorMessage += "Name cannot be blank. ";
+            }
+            try
+            {
+                MaxRound = Convert.ToInt32(MenuBox_RoundsTextBox.Text);
+                if(MaxRound > 100)
+                {
+                    errorMessage += "Round Number too large (max 100). ";
+                }
+                else if (MaxRound < 3)
+                {
+                    errorMessage += "Round Number too small (min 3). ";
+                }
+            }
+            catch (Exception)
+            {
+                errorMessage += "Use numbers only for inputing Rounds. ";
+            }
+            if (String.IsNullOrEmpty(errorMessage))
+            {
+                DefaultValues();
+                PlayerLabel.Text = playerUserName;
+                RefreshGameWindow();
+                HideMenuBox();
+                HideRematchBox();
+                playerWinsOverall = 0;
+                AIwinsOverall = 0;
+            }
+            else
+            {
+                MessageBox.Show(errorMessage);
+            }
+            
+        }
+
+        private void MenuBox_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void MenuButton_Click(object sender, EventArgs e)
+        {
+            ShowMenuBox();
+        }
+
+        private void RematchBox_MenuButton_Click(object sender, EventArgs e)
+        {
+            ShowMenuBox();
+        }
+
+        private void MenuBox_GoBackButton_Click(object sender, EventArgs e)
+        {
+            HideMenuBox();
         }
     }
 

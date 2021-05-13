@@ -7,4 +7,19 @@ C:\Users\User\Documents\GitHub\BNU-CO453-APP06-HAROON\RPS Game\obj\Debug\RPS Gam
 C:\Users\User\Documents\GitHub\BNU-CO453-APP06-HAROON\RPS Game\obj\Debug\RPS Game.csproj.CoreCompileInputs.cache
 C:\Users\User\Documents\GitHub\BNU-CO453-APP06-HAROON\RPS Game\obj\Debug\RPS Game.exe
 C:\Users\User\Documents\GitHub\BNU-CO453-APP06-HAROON\RPS Game\obj\Debug\RPS Game.pdb
+C:\Users\User\Documents\GitHub\BNU-CO453-APP06-HAROON\RPS Game\bin\Debug\EntityFramework.dll
+C:\Users\User\Documents\GitHub\BNU-CO453-APP06-HAROON\RPS Game\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\User\Documents\GitHub\BNU-CO453-APP06-HAROON\RPS Game\bin\Debug\System.Buffers.dll
+C:\Users\User\Documents\GitHub\BNU-CO453-APP06-HAROON\RPS Game\bin\Debug\System.Memory.dll
+C:\Users\User\Documents\GitHub\BNU-CO453-APP06-HAROON\RPS Game\bin\Debug\System.Numerics.Vectors.dll
+C:\Users\User\Documents\GitHub\BNU-CO453-APP06-HAROON\RPS Game\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\User\Documents\GitHub\BNU-CO453-APP06-HAROON\RPS Game\bin\Debug\EntityFramework.xml
+C:\Users\User\Documents\GitHub\BNU-CO453-APP06-HAROON\RPS Game\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\User\Documents\GitHub\BNU-CO453-APP06-HAROON\RPS Game\bin\Debug\System.Buffers.xml
+C:\Users\User\Documents\GitHub\BNU-CO453-APP06-HAROON\RPS Game\bin\Debug\System.Memory.xml
+C:\Users\User\Documents\GitHub\BNU-CO453-APP06-HAROON\RPS Game\bin\Debug\System.Numerics.Vectors.xml
+C:\Users\User\Documents\GitHub\BNU-CO453-APP06-HAROON\RPS Game\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\User\Documents\GitHub\BNU-CO453-APP06-HAROON\RPS Game\obj\Debug\RPS Game.csproj.CopyComplete
 C:\Users\User\Documents\GitHub\BNU-CO453-APP06-HAROON\RPS Game\obj\Debug\RPS_Game.GameWindow.resources
+C:\Users\User\Documents\GitHub\BNU-CO453-APP06-HAROON\RPS Game\bin\Debug\RPS_Database.mdf
+C:\Users\User\Documents\GitHub\BNU-CO453-APP06-HAROON\RPS Game\bin\Debug\RPS_Database_log.ldf
